@@ -1,0 +1,11 @@
+main: com.abhiram.minestore.MineStore
+name: Minestore
+version: 1.1
+Author: Abhiram
+
+commands:
+  buy:
+    description: a buy gui command
+  ms:
+    description: the plugin reload command
+    usage: /ms <reload>

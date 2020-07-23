@@ -1,0 +1,16 @@
+# -------------------
+# Minestore by abhi #
+# Version: 1.1
+# -------------------
+
+GUI-settings:
+  Gui-name: "&c&lBuy"
+  Gui-size: 54
+
+GUI:
+  exampleitem:
+    name: "&cVIP+"
+    Type: "IRON_BLOCK"
+    lore:
+      - "price: $8"
+    slot: 5
