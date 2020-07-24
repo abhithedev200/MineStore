@@ -2,6 +2,7 @@ package com.abhiram.minestore;
 
 import com.abhiram.minestore.commands.BuyCommand;
 import com.abhiram.minestore.commands.ReloadCommand;
+import com.abhiram.minestore.commands.ShopLinkCommand;
 import com.abhiram.minestore.filemanager.SpigotConfigManager;
 import com.abhiram.minestore.websocket.CommandHandler;
 import events.BuyEvent;
@@ -62,6 +63,7 @@ public class MineStore extends JavaPlugin {
     void RegisterCommands(){
         this.getCommand("buy").setExecutor(new BuyCommand(this));
         this.getCommand("ms").setExecutor(new ReloadCommand(this));
+        this.getCommand("shop").setExecutor(new ShopLinkCommand(this));
     }
 
     void RegisterEvents(){

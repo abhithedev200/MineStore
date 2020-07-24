@@ -7,3 +7,6 @@
 port: 33266
 # password
 password: "a nice password"
+
+# Your shop Url (/shop command)
+Url: "www.thisisashopurl.com/store"
