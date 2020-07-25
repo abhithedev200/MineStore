@@ -64,9 +64,14 @@ public class MineStore extends JavaPlugin {
     }
 
     void RegisterCommands(){
-        this.getCommand("buy").setExecutor(new BuyCommand(this));
+        if(config.getConfig().getBoolean("buy-enable")) {
+            this.getCommand("buy").setExecutor(new BuyCommand(this));
+        }
         this.getCommand("ms").setExecutor(new ReloadCommand(this));
-        this.getCommand("shop").setExecutor(new ShopLinkCommand(this));
+
+        if(config.getConfig().getBoolean("enable")) {
+            this.getCommand("shop").setExecutor(new ShopLinkCommand(this));
+        }
     }
 
     void RegisterEvents(){

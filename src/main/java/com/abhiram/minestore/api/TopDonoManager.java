@@ -59,13 +59,23 @@ public class TopDonoManager {
         int a = 0;
 
         for(Donator don2 : dono) {
-            String value = ChatColor.translateAlternateColorCodes('&',plugin.config.getConfig().getString("PlaceHolder-format"))
-                    .replaceAll("%username%",dono[a].getUsername())
-                    .replaceAll("%amount%",dono[a].getAmount());
-            dono1.add(value);
+            dono1.add(dono[a].getUsername());
             a++;
         }
+        return dono1;
+    }
 
+    public ArrayList<String> getTopDonatorsAmount() throws Exception{
+        ArrayList<String> dono1 = new ArrayList<String>();
+        Gson gson = new GsonBuilder().create();
+        Donator[] dono = gson.fromJson(getTopDono(),Donator[].class);
+
+        int a = 0;
+
+        for(Donator don2 : dono) {
+            dono1.add(dono[a].getAmount());
+            a++;
+        }
         return dono1;
     }
 }
