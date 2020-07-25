@@ -13,3 +13,4 @@ Url: "www.thisisashopurl.com/store"
 
 # Your shop api-url
 Url-api: "mystore.com/api/top_donators"
+PlaceHolder-format: "%username% $%amount%"

@@ -3,6 +3,7 @@ package com.abhiram.minestore.api;
 import com.abhiram.minestore.MineStore;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.bukkit.ChatColor;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -58,7 +59,10 @@ public class TopDonoManager {
         int a = 0;
 
         for(Donator don2 : dono) {
-            dono1.add(dono[a].getUsername() + "  "+ "$"+ dono[a].getAmount());
+            String value = ChatColor.translateAlternateColorCodes('&',plugin.config.getConfig().getString("PlaceHolder-format"))
+                    .replaceAll("%username%",dono[a].getUsername())
+                    .replaceAll("%amount%",dono[a].getAmount());
+            dono1.add(value);
             a++;
         }
 
