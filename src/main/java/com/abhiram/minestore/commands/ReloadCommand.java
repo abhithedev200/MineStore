@@ -24,6 +24,11 @@ public class ReloadCommand implements CommandExecutor {
             plugin.getLogger().warning("Reloaded.");
             commandSender.sendMessage(ChatColor.YELLOW + "[Minestore] Reloaded.");
         }
+
+        if(args[0].equalsIgnoreCase("shop")){
+            String message = ChatColor.translateAlternateColorCodes('&',this.plugin.config.getConfig().getString("Url"));
+            commandSender.sendMessage(message);
+        }
         return true;
     }
 }

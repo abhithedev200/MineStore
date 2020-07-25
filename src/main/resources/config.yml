@@ -13,8 +13,6 @@ password: "a nice password"
 buy-enable: true
 
 
-# enable disable /shop command
-enable: true
 # url to send when /shop
 Url: "www.thisisashopurl.com/store"
 
