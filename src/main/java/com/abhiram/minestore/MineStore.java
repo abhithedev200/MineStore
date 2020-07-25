@@ -1,5 +1,6 @@
 package com.abhiram.minestore;
 
+import com.abhiram.minestore.api.PlaceHolderApiHook;
 import com.abhiram.minestore.commands.BuyCommand;
 import com.abhiram.minestore.commands.ReloadCommand;
 import com.abhiram.minestore.commands.ShopLinkCommand;
@@ -22,6 +23,8 @@ public class MineStore extends JavaPlugin {
     @Override
     public void onEnable(){
 
+        // PlaceHolder api check
+        PapiCheck();
         // Register all commands
         RegisterCommands();
 
@@ -70,4 +73,10 @@ public class MineStore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new BuyEvent(this),this);
     }
 
+    void PapiCheck(){
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI").isEnabled()){
+            getLogger().info("Placeholder api found adding expansion");
+            new PlaceHolderApiHook(this).register();
+        }
+    }
 }

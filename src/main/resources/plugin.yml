@@ -2,7 +2,8 @@ main: com.abhiram.minestore.MineStore
 name: Minestore
 version: 1.1
 Author: Abhiram
-
+depend:
+  - PlaceholderAPI
 commands:
   buy:
     description: a buy gui command

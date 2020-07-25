@@ -1,0 +1,63 @@
+package com.abhiram.minestore.api;
+
+import com.abhiram.minestore.MineStore;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.entity.Player;
+
+public class PlaceHolderApiHook extends PlaceholderExpansion {
+
+    private MineStore plugin;
+
+
+    public PlaceHolderApiHook(MineStore plugin) {
+        this.plugin = plugin;
+    }
+
+    @Override
+    public boolean persist(){
+        return true;
+    }
+
+
+    @Override
+    public boolean canRegister(){
+        return true;
+    }
+
+    @Override
+    public String getIdentifier() {
+        return "minestore";
+    }
+
+    @Override
+    public String getPlugin() {
+        return null;
+    }
+
+    @Override
+    public String getAuthor() {
+        return "Abhiram";
+    }
+
+    @Override
+    public String getVersion() {
+        return "V1.1";
+    }
+
+
+    @Override
+    public String onPlaceholderRequest(Player p, String identifier){
+
+
+        if(identifier.contains("top")) {
+            TopDonoManager manager = new TopDonoManager(plugin);
+            String[] split = identifier.split("top_");
+            try {
+               return manager.getTopDonators().get(Integer.parseInt(split[1]));
+            } catch (Exception e) {
+
+            }
+        }
+        return "This seems to be empty";
+    }
+}

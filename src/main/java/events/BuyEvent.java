@@ -18,8 +18,6 @@ public class BuyEvent implements Listener {
 
         if(e.getView().getTitle().contains(inventory_name)){
             e.setCancelled(true);
-        }else{
-            plugin.getLogger().warning("Invalid name");
         }
     }
 }
