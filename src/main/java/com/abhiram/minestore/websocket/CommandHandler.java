@@ -34,6 +34,7 @@ public class CommandHandler implements Runnable{
             final String[] pass = responce.split("  ");
             if(pass[0].equalsIgnoreCase(websoket_password)){
                 MinestoreAPIEvents event = new MinestoreAPIEvents(pass[1]);
+                Bukkit.getPluginManager().callEvent(event);
                 if(event.isCancelled()) {
                     plugin.getLogger().info("Got an order from MineStore. Running a command " + pass[1]);
                     Bukkit.getScheduler().callSyncMethod(plugin, new Callable<Boolean>() {
@@ -42,7 +43,6 @@ public class CommandHandler implements Runnable{
                             return Bukkit.dispatchCommand(Bukkit.getConsoleSender(), pass[1]);
                         }
                     }).get();
-                    Bukkit.getPluginManager().callEvent(event);
                     return;
                 }
             }
