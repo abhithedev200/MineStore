@@ -29,7 +29,10 @@ public class MineStore extends JavaPlugin {
         RegisterEvents();
 
         // config.yml
-        config = new SpigotConfigManager("config.yml",this,this.getDataFolder().toString());
+        if(!(new File(getDataFolder(), "config.yml").exists())) {
+           getConfig().options().copyDefaults(true);
+           saveConfig();
+        }
 
         // Register all commands
         RegisterCommands();
