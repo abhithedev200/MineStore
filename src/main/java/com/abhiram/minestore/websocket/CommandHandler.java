@@ -2,6 +2,7 @@ package com.abhiram.minestore.websocket;
 
 
 import com.abhiram.minestore.MineStore;
+import com.abhiram.minestore.api.MinestoreAPIEvents;
 import org.bukkit.Bukkit;
 
 import java.io.BufferedReader;
@@ -32,14 +33,18 @@ public class CommandHandler implements Runnable{
 
             final String[] pass = responce.split("  ");
             if(pass[0].equalsIgnoreCase(websoket_password)){
-                plugin.getLogger().info("Got an order from MineStore. Running a command " + pass[1]);
-                Bukkit.getScheduler().callSyncMethod(plugin, new Callable<Boolean>() {
-                    @Override
-                    public Boolean call() {
-                        return Bukkit.dispatchCommand(Bukkit.getConsoleSender(),pass[1]);
-                    }
-                } ).get();
-                return;
+                MinestoreAPIEvents event = new MinestoreAPIEvents(pass[1]);
+                if(event.isCancelled()) {
+                    plugin.getLogger().info("Got an order from MineStore. Running a command " + pass[1]);
+                    Bukkit.getScheduler().callSyncMethod(plugin, new Callable<Boolean>() {
+                        @Override
+                        public Boolean call() {
+                            return Bukkit.dispatchCommand(Bukkit.getConsoleSender(), pass[1]);
+                        }
+                    }).get();
+                    Bukkit.getPluginManager().callEvent(event);
+                    return;
+                }
             }
             plugin.getLogger().info("MineStore received an order, but unable to process it. ERROR (Invalid Password)");
             return;
