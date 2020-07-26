@@ -24,14 +24,16 @@ public class MineStore extends JavaPlugin {
 
         // PlaceHolder api check
         PapiCheck();
-        // Register all commands
-        RegisterCommands();
 
         // Register all Events
         RegisterEvents();
 
         // config.yml
-        config = new SpigotConfigManager("config.yml",this,getDataFolder().toString());
+        config = new SpigotConfigManager("config.yml",this,this.getDataFolder().toString());
+
+        // Register all commands
+        RegisterCommands();
+
         // buy.yml
         buy = new SpigotConfigManager("buy.yml",this,this.getDataFolder().toString());
         int port = config.getConfig().getInt("port");
