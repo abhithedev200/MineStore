@@ -14,7 +14,7 @@ buy-enable: true
 
 
 # URL for /shop command (your shop link)
-Url: "tpts://store.yourdomain.com/"
+Url: "https://store.yourdomain.com/"
 
 # Your API URL for getting the top-donators placeholders - %minestore_username_top_0% and %minestore_amount_top_0% (from 0 to 9)
-Url-api: "htpts://store.yourdomain.com/api/top_donators"
+Url-api: "https://yourstore.com/api/top_donators"
