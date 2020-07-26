@@ -1,20 +1,20 @@
-# ------------------------
-# Minestore by abhi      #
-# Version: 1.1           #
-#-------------------------
+# -----------------------------------------------#
+# MineStore Plugin (DonationBridge) by abhi      #
+# Version: 1.2                                   #
+#------------------------------------------------#
 
-# port
+# Websocket Port
 port: 33266
-# password
-password: "a nice password"
+# Websocket Passoword
+password: "hard_password_here"
 
 
-# buy command enable (true or fales)
+# /buy command that enabled GUI (something similar to chest commands)
 buy-enable: true
 
 
-# url to send when /shop
-Url: "www.thisisashopurl.com/store"
+# URL for /shop command (your shop link)
+Url: "tpts://store.yourdomain.com/"
 
-# Your shop api-url
-Url-api: "mystore.com/api/top_donators"
+# Your API URL for getting the top-donators placeholders - %minestore_username_top_0% and %minestore_amount_top_0% (from 0 to 9)
+Url-api: "htpts://store.yourdomain.com/api/top_donators"

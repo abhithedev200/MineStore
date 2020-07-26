@@ -3,9 +3,6 @@ package com.abhiram.minestore.api;
 import com.abhiram.minestore.MineStore;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.scheduler.BukkitTask;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,7 +10,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class TopDonoManager {
 

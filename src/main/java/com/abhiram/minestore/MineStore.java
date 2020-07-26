@@ -44,7 +44,7 @@ public class MineStore extends JavaPlugin {
             Bukkit.getScheduler().runTaskTimerAsynchronously(this,handler, 2,2);
         }catch (Exception e){
             getLogger().info("-------------------------------------");
-            getLogger().info("Minestore Version: 1.0");
+            getLogger().info("MINESTORE Version: 1.2");
             getLogger().info("ERROR: Unable to listen on port " + port);
             getLogger().info("Plugin Shuting down");
             getLogger().info("--------------------------------------");
@@ -77,7 +77,7 @@ public class MineStore extends JavaPlugin {
 
     void PapiCheck(){
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI").isEnabled()){
-            getLogger().info("Placeholder api found adding expansion");
+            getLogger().info("Placeholder API has been founded. Adding expansion");
             new PlaceHolderApiHook(this).register();
         }
     }

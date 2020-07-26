@@ -22,7 +22,7 @@ public class BuyCommand implements CommandExecutor {
             return true;
         }
 
-        commandSender.sendMessage("[MineStore]Console cant run this command");
+        commandSender.sendMessage("MINESTORE | Console unabled to run this command.");
         return true;
     }
 }

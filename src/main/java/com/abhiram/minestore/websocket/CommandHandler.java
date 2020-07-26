@@ -32,7 +32,7 @@ public class CommandHandler implements Runnable{
 
             final String[] pass = responce.split("  ");
             if(pass[0].equalsIgnoreCase(websoket_password)){
-                plugin.getLogger().info("Got an order from minestore,Running command " + pass[1]);
+                plugin.getLogger().info("Got an order from MineStore. Running a command " + pass[1]);
                 Bukkit.getScheduler().callSyncMethod(plugin, new Callable<Boolean>() {
                     @Override
                     public Boolean call() {
@@ -41,7 +41,7 @@ public class CommandHandler implements Runnable{
                 } ).get();
                 return;
             }
-            plugin.getLogger().info("Got one Order Unable to process it. ERROR(Invalid Password)");
+            plugin.getLogger().info("MineStore received an order, but unable to process it. ERROR (Invalid Password)");
             return;
         }catch (Exception var){
 

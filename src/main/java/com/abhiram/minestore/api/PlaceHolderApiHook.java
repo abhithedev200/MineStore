@@ -66,6 +66,6 @@ public class PlaceHolderApiHook extends PlaceholderExpansion {
 
             }
         }
-        return "This seems to be empty";
+        return "It seems to be empty";
     }
 }
