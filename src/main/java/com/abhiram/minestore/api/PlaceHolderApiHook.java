@@ -4,13 +4,16 @@ import com.abhiram.minestore.MineStore;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 
+
+
 public class PlaceHolderApiHook extends PlaceholderExpansion {
 
     private MineStore plugin;
-
+    private TopDonoManager manager;
 
     public PlaceHolderApiHook(MineStore plugin) {
         this.plugin = plugin;
+        manager = new TopDonoManager(plugin);
     }
 
     @Override
@@ -48,21 +51,18 @@ public class PlaceHolderApiHook extends PlaceholderExpansion {
     @Override
     public String onPlaceholderRequest(Player p, String identifier){
 
-
         if(identifier.contains("username_top")) {
-            TopDonoManager manager = new TopDonoManager(plugin);
-            String[] split = identifier.split("username_top_");
+             String[] split = identifier.split("username_top_");
             try {
-               return manager.getTopDonators().get(Integer.parseInt(split[1]));
-            } catch (Exception e) {
+                return manager.getTopDonators().get(Integer.parseInt(split[1]));
+            }catch (Exception e){
 
             }
         }else if (identifier.contains("amount_top")){
-            TopDonoManager manager = new TopDonoManager(plugin);
             String[] split = identifier.split("amount_top_");
             try {
                 return manager.getTopDonatorsAmount().get(Integer.parseInt(split[1]));
-            } catch (Exception e) {
+            }catch (Exception e){
 
             }
         }

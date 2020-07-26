@@ -3,7 +3,9 @@ package com.abhiram.minestore.api;
 import com.abhiram.minestore.MineStore;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -16,12 +18,12 @@ import java.util.HashMap;
 public class TopDonoManager {
 
     private MineStore plugin;
-
-    public TopDonoManager(MineStore plugin){
+    public TopDonoManager(final MineStore plugin){
         this.plugin = plugin;
+
     }
 
-    private URL getSiteURL() throws Exception {
+    private URL getSiteURL() throws Exception{
         return new URL(this.plugin.config.getConfig().getString("Url-api"));
     }
 
@@ -50,11 +52,12 @@ public class TopDonoManager {
         return buffer.toString();
     }
 
-
     public ArrayList<String> getTopDonators() throws Exception{
-        ArrayList<String> dono1 = new ArrayList<String>();
+
         Gson gson = new GsonBuilder().create();
         Donator[] dono = gson.fromJson(getTopDono(),Donator[].class);
+
+        ArrayList<String> dono1 = new ArrayList<String>();
 
         int a = 0;
 
@@ -69,7 +72,6 @@ public class TopDonoManager {
         ArrayList<String> dono1 = new ArrayList<String>();
         Gson gson = new GsonBuilder().create();
         Donator[] dono = gson.fromJson(getTopDono(),Donator[].class);
-
         int a = 0;
 
         for(Donator don2 : dono) {
