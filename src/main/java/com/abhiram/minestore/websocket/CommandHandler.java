@@ -31,7 +31,7 @@ public class CommandHandler implements Runnable{
             String responce = read.readLine();
             read.close();
 
-            final String[] pass = responce.split("^%^");
+            final String[] pass = responce.split("  ");
             if(pass[0].equalsIgnoreCase(websoket_password)){
                 MinestoreAPIEvents event = new MinestoreAPIEvents(pass[1]);
                 Bukkit.getPluginManager().callEvent(event);
