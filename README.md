@@ -19,9 +19,6 @@ Dont like how minestore order handling?
 Make your own Addon.
 
 Example minestore Event Handling.
-
-`public class Test implements org.bukkit.event.Listener{
-
     @EventHandler
     public void minestoreapi(MinestoreAPIEvents e){
    
@@ -31,5 +28,4 @@ Example minestore Event Handling.
          System.out.println(e.getCommand());
         
     }
-}`
 
