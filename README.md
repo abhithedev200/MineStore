@@ -12,3 +12,24 @@ how can i build this plugin?
 run maven package
 command:
 mvn clean package
+
+# API
+minestore api 
+Dont like how minestore order handling?
+Make your own Addon.
+
+Example minestore Event Handling.
+
+public class Test implements org.bukkit.event.Listener{
+
+    @EventHandler
+    public void minestoreapi(MinestoreAPIEvents e){
+   
+         // Cancels The minestore order process
+         e.SetCanceled(true);
+         // Prints the minestore Commands from Website
+         System.out.println(e.getCommand());
+        
+    }
+}
+
