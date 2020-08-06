@@ -10,17 +10,23 @@ import java.util.ArrayList;
 public class MinestoreAPIEvents extends Event {
 
     private String command;
-    private Boolean cancel;
-    private static final HandlerList HANDLERS = new HandlerList();
+    private Boolean cancel = false;
+
+    private static final HandlerList handlers = new HandlerList();
 
     public MinestoreAPIEvents(String command){
+        super(true);
         this.command = command;
     }
 
 
     @Override
     public HandlerList getHandlers() {
-        return HANDLERS;
+        return handlers;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlers;
     }
 
     public String getCommand(){

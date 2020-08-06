@@ -2,6 +2,7 @@ package com.abhiram.minestore.commands;
 
 import com.abhiram.minestore.MineStore;
 import com.abhiram.minestore.gui.BuyGui;
+import com.abhiram.minestore.gui.TestGui;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
