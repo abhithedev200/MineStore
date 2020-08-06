@@ -20,7 +20,7 @@ Make your own Addon.
 
 Example minestore Event Handling.
 
-public class Test implements org.bukkit.event.Listener{
+```public class Test implements org.bukkit.event.Listener{
 
     @EventHandler
     public void minestoreapi(MinestoreAPIEvents e){
@@ -31,5 +31,5 @@ public class Test implements org.bukkit.event.Listener{
          System.out.println(e.getCommand());
         
     }
-}
+}```
 
