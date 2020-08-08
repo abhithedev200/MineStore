@@ -4,26 +4,26 @@ An Donation Bridge Plugin
 
 This plugin is for https://www.mc-market.org/resources/13698/
 
-its supports all minestore (PRO,Lite etc).
+This plugin supports all minestore types (PRO,LITE,ETC).
 
 
-how can i build this plugin?
+How do I build this project?
 
-run maven package
-command:
+```
 mvn clean package
+```
 
 # API
-minestore api 
-Dont like how minestore order handling?
-Make your own Addon.
+MineStore API 
+Don't like how MineStore is handling orders?
+Create your own addon to our plugin!
 
-Example minestore Event Handling.
+Example...
 
 
 
     @EventHandler
-    public void minestoreapi(MinestoreAPIEvents e){
+    public void onMinestoreApi(MinestoreAPIEvents e){
    
          // Cancels The minestore order process
          e.SetCanceled(true);
