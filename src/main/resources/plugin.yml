@@ -10,6 +10,7 @@ commands:
   ms:
     description: the plugin reload command
     usage: /ms <reload>
+    permission: minestore.admin
   shop:
     description: Shows your shop link
     usage: /shop
