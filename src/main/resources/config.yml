@@ -18,3 +18,6 @@ Url: "https://store.yourdomain.com/"
 
 # Your API URL for getting the top-donators placeholders - %minestore_username_top_0% and %minestore_amount_top_0% (from 0 to 9)
 Url-api: "https://yourstore.com/api/top_donators"
+
+# BungeeCord Mode if you are using buangee Plugin Enable this.
+Bungee-Mode: false

@@ -1,5 +1,6 @@
 package com.abhiram.minestore;
 
+import com.abhiram.minestore.BungeeCord.BungeeHandler;
 import com.abhiram.minestore.api.PlaceHolderApiHook;
 import com.abhiram.minestore.commands.BuyCommand;
 import com.abhiram.minestore.commands.ReloadCommand;
@@ -36,21 +37,17 @@ public class MineStore extends JavaPlugin {
 
         // buy.yml
         buy = new SpigotConfigManager("buy.yml",this,this.getDataFolder().toString());
-        int port = config.getConfig().getInt("port");
-        String password = config.getConfig().getString("password");
 
-        try{
-            handler = new CommandHandler(port,password,this);
-            Bukkit.getScheduler().runTaskTimerAsynchronously(this,handler, 2,2);
-        }catch (Exception e){
-            getLogger().info("-------------------------------------");
-            getLogger().info("MINESTORE Version: 1.2");
-            getLogger().info("ERROR: Unable to listen on port " + port);
-            getLogger().info("Plugin Shuting down");
-            getLogger().info("--------------------------------------");
+        // check order persecond
+        if(!config.getConfig().getBoolean("Bungee-Mode")) {
+            CheckOrder();
+        }else {
+            getLogger().info("----------------------------------");
+            getLogger().info("Minestore BungeeCord Mode enabled.");
+            getLogger().info("Version: 1.1");
+            getLogger().info("----------------------------------");
 
-            // Server ShutDown
-            Bukkit.getServer().shutdown();
+            getServer().getMessenger().registerIncomingPluginChannel(this,"my:minestore",new BungeeHandler(this));
         }
     }
 
@@ -58,7 +55,9 @@ public class MineStore extends JavaPlugin {
     @Override
     public void onDisable(){
         try {
-            handler.getServerSocket().close();
+            if(!config.getConfig().getBoolean("Bungee-Mode")) {
+                handler.getServerSocket().close();
+            }
         }catch (Exception e){
 
         }
@@ -79,6 +78,25 @@ public class MineStore extends JavaPlugin {
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI").isEnabled()){
             getLogger().info("Placeholder API has been founded. Adding expansion");
             new PlaceHolderApiHook(this).register();
+        }
+    }
+
+    private void CheckOrder(){
+        int port = config.getConfig().getInt("port");
+        String password = config.getConfig().getString("password");
+
+        try{
+            handler = new CommandHandler(port,password,this);
+            Bukkit.getScheduler().runTaskTimerAsynchronously(this,handler, 2,2);
+        }catch (Exception e){
+            getLogger().info("-------------------------------------");
+            getLogger().info("MINESTORE Version: 1.2");
+            getLogger().info("ERROR: Unable to listen on port " + port);
+            getLogger().info("Plugin Shuting down");
+            getLogger().info("--------------------------------------");
+
+            // Server ShutDown
+            Bukkit.getServer().shutdown();
         }
     }
 }
