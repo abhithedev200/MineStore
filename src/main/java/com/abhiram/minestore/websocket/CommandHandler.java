@@ -12,6 +12,12 @@ import java.net.Socket;
 import java.util.concurrent.Callable;
 
 public class CommandHandler implements Runnable{
+
+    /**
+     * Due to memory leak i stoped using java Server Socket method for making Server
+     */
+
+
     private ServerSocket websoket;
     private int websocket_port;
     private String websoket_password;

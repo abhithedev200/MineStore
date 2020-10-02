@@ -6,11 +6,22 @@ import com.abhiram.minestore.commands.BuyCommand;
 import com.abhiram.minestore.commands.ReloadCommand;
 import com.abhiram.minestore.filemanager.SpigotConfigManager;
 import com.abhiram.minestore.websocket.CommandHandler;
+import com.abhiram.minestore.websocket.NettyServerSocketHandler;
 import events.BuyEvent;
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import sun.applet.Main;
 
 public class MineStore extends JavaPlugin {
+
+    // This class instance
+    private static MineStore main;
+
 
     // Config
     public SpigotConfigManager config;
@@ -19,9 +30,11 @@ public class MineStore extends JavaPlugin {
     public SpigotConfigManager buy;
 
     private CommandHandler handler;
+
     // Plugin onEnable Method
     @Override
     public void onEnable(){
+        main = this;
 
         // PlaceHolder api check
         PapiCheck();
@@ -40,7 +53,14 @@ public class MineStore extends JavaPlugin {
 
         // check order persecond
         if(!config.getConfig().getBoolean("Bungee-Mode")) {
-            CheckOrder();
+            try
+            {
+                int port = config.getConfig().getInt("port");
+                StartNettyServer(port);
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }else {
             getLogger().info("----------------------------------");
             getLogger().info("Minestore BungeeCord Mode enabled.");
@@ -98,5 +118,28 @@ public class MineStore extends JavaPlugin {
             // Server ShutDown
             Bukkit.getServer().shutdown();
         }
+    }
+
+
+    private void StartNettyServer(int port) throws Exception
+    {
+        getLogger().info("Starting Server at " + port);
+
+        EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
+        EventLoopGroup worker = new NioEventLoopGroup();
+
+        ServerBootstrap serverBootstrap = new ServerBootstrap();
+
+        serverBootstrap.group(eventLoopGroup,worker)
+                .channel(NioServerSocketChannel.class)
+                .childHandler(new NettyServerSocketHandler())
+                .childOption(ChannelOption.SO_KEEPALIVE,true);
+
+        serverBootstrap.bind(port).sync();
+    }
+
+    public static MineStore getinstance()
+    {
+        return main;
     }
 }
