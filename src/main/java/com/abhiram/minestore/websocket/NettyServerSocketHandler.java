@@ -7,6 +7,11 @@ import io.netty.handler.codec.string.StringEncoder;
 
 public class NettyServerSocketHandler extends ChannelInitializer<SocketChannel> {
 
+    /**
+     * Netty Server init
+     * @param socketChannel
+     * @throws Exception
+     */
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         socketChannel.pipeline().addLast(new StringEncoder());

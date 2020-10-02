@@ -10,6 +10,12 @@ import java.util.concurrent.Callable;
 
 public class NettyCommandHandler extends SimpleChannelInboundHandler<String> {
 
+    /**
+     * Handle Minestore Orders
+     * @param channelHandlerContext
+     * @param response
+     * @throws Exception
+     */
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, String response) throws Exception {

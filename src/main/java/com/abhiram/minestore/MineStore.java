@@ -121,6 +121,12 @@ public class MineStore extends JavaPlugin {
     }
 
 
+    /**
+     * Handling minestore with netty server
+     * @param port
+     * @throws Exception
+     */
+
     private void StartNettyServer(int port) throws Exception
     {
         getLogger().info("Starting Server at " + port);
