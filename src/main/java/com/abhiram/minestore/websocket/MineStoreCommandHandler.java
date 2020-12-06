@@ -27,7 +27,9 @@ public class MineStoreCommandHandler extends SimpleChannelInboundHandler<String>
 
             if (!event.isCancelled()) {
                 if(Bukkit.getPlayer(command.getUsername()) == null) {
+                    MineStore.getinstance().getLogger().info("Got an order from MineStore. But unable to run it because player is offline");
                     CommandManager.getCommandManager().addCommand(command);
+                    return;
                 }
                 MineStore.getinstance().getLogger().info("Got an order from MineStore. Running a command " + command.getCommand());
                 Bukkit.getScheduler().callSyncMethod(MineStore.getinstance(), new Callable<Boolean>() {

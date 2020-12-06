@@ -8,6 +8,7 @@ import com.abhiram.minestore.filemanager.SpigotConfigManager;
 import com.abhiram.minestore.task.CommandRunnerTask;
 import com.abhiram.minestore.websocket.CommandHandler;
 import com.abhiram.minestore.websocket.MineStoreCommandHandler;
+import com.abhiram.minestore.websocket.NettyServerSocketHandler;
 import events.BuyEvent;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelOption;
@@ -141,7 +142,7 @@ public class MineStore extends JavaPlugin {
 
         serverBootstrap.group(eventLoopGroup,worker)
                 .channel(NioServerSocketChannel.class)
-                .childHandler(new MineStoreCommandHandler())
+                .childHandler(new NettyServerSocketHandler())
                 .childOption(ChannelOption.SO_KEEPALIVE,true);
 
         serverBootstrap.bind(port).sync();

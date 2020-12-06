@@ -16,6 +16,6 @@ public class NettyServerSocketHandler extends ChannelInitializer<SocketChannel> 
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         socketChannel.pipeline().addLast(new StringEncoder());
         socketChannel.pipeline().addLast(new StringDecoder());
-        socketChannel.pipeline().addLast(new NettyCommandHandler());
+        socketChannel.pipeline().addLast(new MineStoreCommandHandler());
     }
 }
