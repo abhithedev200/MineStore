@@ -8,20 +8,20 @@ import org.bukkit.Bukkit;
 
 import java.util.concurrent.Callable;
 
+@Deprecated
 public class NettyCommandHandler extends SimpleChannelInboundHandler<String> {
 
     /**
-     * Handle Minestore Orders
+     * Handle Minestore Orders For lagacy Versions... this methods work no longer so its Deprecated
      * @param channelHandlerContext
      * @param response
      * @throws Exception
      */
-
+    @Deprecated
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, String response) throws Exception {
 
         String websoket_password = MineStore.getinstance().config.getConfig().getString("password");
-
 
         final String[] pass = response.split("  ");
         if (pass[0].equalsIgnoreCase(websoket_password)) {

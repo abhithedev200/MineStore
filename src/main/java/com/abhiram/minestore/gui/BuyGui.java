@@ -22,7 +22,6 @@ public class BuyGui {
     }
 
     private void SetGui(){
-        BuyGuiManager manager = new BuyGuiManager();
         GUI = Bukkit.createInventory(null,plugin.buy.getConfig().getInt("GUI-settings.Gui-size"),ChatColor.translateAlternateColorCodes('&',
                 this.plugin.buy.getConfig().getString("GUI-settings.Gui-name")));
         for(String sec : plugin.buy.getConfig().getConfigurationSection("GUI").getKeys(false)){

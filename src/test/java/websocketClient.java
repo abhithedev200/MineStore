@@ -6,7 +6,7 @@ public class websocketClient {
     {
         Socket soc = new Socket("localhost",33266);
 
-        String str = "Hmm idk";
+        String str = "hard_password_here  op Spigot_Abhiram";
 
         soc.getOutputStream().write(str.getBytes());
 

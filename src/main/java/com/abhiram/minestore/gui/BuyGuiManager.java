@@ -1,77 +1,150 @@
 package com.abhiram.minestore.gui;
 
+import com.abhiram.minestore.MineStore;
+import com.abhiram.minestore.gui.jsonobjects.Category;
+import com.abhiram.minestore.gui.jsonobjects.Package;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BuyGuiManager {
+    private HashMap<String, Inventory> gui_map = new HashMap<String, Inventory>();
+    private final Gson gson = new Gson();
+    private static BuyGuiManager buyGuiManager;
 
-    /**
-     * This is an test class only
-     * Dont include this when you compile
-     */
+    public BuyGuiManager()
+    {
+        setCategoryGui();
+    }
 
-    private String getGuiJson() throws Exception{
-        URL baseURL = new URL("https://pro.minestorecms.com/api/gui/packages");
+    private Inventory getPackages(java.lang.String url_name)
+    {
+        Inventory gui = Bukkit.createInventory(null,52,"Package!");
 
-        URLConnection connection = baseURL.openConnection();
-        connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
-        connection.setConnectTimeout(500000);
-        connection.connect();
-        BufferedReader in = null;
-        String line;
         try {
-            in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        } catch (FileNotFoundException var5) {
-            System.out.println("Unable to get Packages");
+            Package[] packages = gson.fromJson(getPackagesFromAPI(), Package[].class);
+
+            int a = 0;
+            for(Package packag : packages)
+            {
+                if(packag.getCategoryname().equalsIgnoreCase(url_name))
+                {
+                    ItemStack package_item = new ItemStack(Material.EMERALD_BLOCK);
+                    ItemMeta package_item_meta = package_item.getItemMeta();
+
+                    package_item_meta.setDisplayName(packag.getPackageName());
+                    ArrayList<java.lang.String> lore = new ArrayList<java.lang.String>();
+                    lore.add(packag.getPackageLore());
+                    package_item_meta.setLore(lore);
+
+                    package_item.setItemMeta(package_item_meta);
+
+                    gui.setItem(a,package_item);
+                    a++;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            MineStore.getinstance().getLogger().info("Unable to connect to Minestore api.. please check api url in config.yml");
         }
 
-        StringBuilder buffer = new StringBuilder();
+        return gui;
+    }
+    private void setCategoryGui()
+    {
+        Inventory gui = Bukkit.createInventory(null,27,"Choose Category!");
 
-        while((line = in.readLine()) != null) {
-            buffer.append(line);
+        try {
+            Category[] category = gson.fromJson(getCategory(),Category[].class);
+
+            int a = 0;
+            for (Category categorys : category)
+            {
+                ItemStack category_item = new ItemStack(Material.DIAMOND_BLOCK);
+                ItemMeta category_item_meta = category_item.getItemMeta();
+                category_item_meta.setDisplayName(categorys.getName());
+
+                category_item.setItemMeta(category_item_meta);
+
+                gui.setItem(a,category_item);
+                a++;
+            }
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            MineStore.getinstance().getLogger().info("Unable to connect to minestore api. please check api url in config.yml");
         }
 
+        gui_map.put("CategoryGui",gui);
+    }
+
+    private String getCategory() throws Exception
+    {
+
+        URLConnection connection = new URL("https://pro.minestorecms.com/api/gui/categories").openConnection();
+        connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
+        connection.connect();
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+        StringBuilder responce = new StringBuilder();
+
+        String line;
+
+        while ((line = in.readLine()) != null)
+        {
+            responce.append(line);
+        }
         in.close();
-        return buffer.toString();
+        return responce.toString();
     }
 
-    public ArrayList<String> getPackageLore() throws Exception{
-        Gson gson = new GsonBuilder().create();
-        GUIPackage[] guiPackage = gson.fromJson(getGuiJson(),GUIPackage[].class);
+    private String getPackagesFromAPI() throws Exception
+    {
+        URLConnection connection = new URL("https://pro.minestorecms.com/api/gui/packages").openConnection();
+        connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
+        connection.connect();
 
-        ArrayList<String> lore = new ArrayList<String>();
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-        int a = 0;
+        StringBuilder responce = new StringBuilder();
 
-        for(GUIPackage pc : guiPackage){
-            lore.add(guiPackage[a].getLore());
-            a++;
+        String line;
+
+        while ((line = in.readLine()) != null)
+        {
+            responce.append(line);
         }
-
-        return lore;
+        in.close();
+        return responce.toString();
     }
-
-
-    public ArrayList<String> getPackageName() throws Exception{
-        Gson gson = new GsonBuilder().create();
-        GUIPackage[] guiPackage = gson.fromJson(getGuiJson(),GUIPackage[].class);
-
-        ArrayList<String> name = new ArrayList<String>();
-
-        int a = 0;
-
-        for(GUIPackage pc : guiPackage){
-            name.add(guiPackage[a].getName());
-            a++;
+    public Inventory getGui(String guiname)
+    {
+        if(gui_map.containsKey(guiname))
+        {
+            return gui_map.get(guiname);
         }
 
-        return name;
+        return null;
+    }
+    public static BuyGuiManager getBuyGuiManager()
+    {
+        if(buyGuiManager == null)
+        {
+            buyGuiManager = new BuyGuiManager();
+        }
+
+        return buyGuiManager;
     }
 }

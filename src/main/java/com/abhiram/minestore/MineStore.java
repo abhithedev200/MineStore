@@ -5,8 +5,9 @@ import com.abhiram.minestore.api.PlaceHolderApiHook;
 import com.abhiram.minestore.commands.BuyCommand;
 import com.abhiram.minestore.commands.ReloadCommand;
 import com.abhiram.minestore.filemanager.SpigotConfigManager;
+import com.abhiram.minestore.task.CommandRunnerTask;
 import com.abhiram.minestore.websocket.CommandHandler;
-import com.abhiram.minestore.websocket.NettyServerSocketHandler;
+import com.abhiram.minestore.websocket.MineStoreCommandHandler;
 import events.BuyEvent;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelOption;
@@ -15,7 +16,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import sun.applet.Main;
 
 public class MineStore extends JavaPlugin {
 
@@ -51,7 +51,9 @@ public class MineStore extends JavaPlugin {
         // buy.yml
         buy = new SpigotConfigManager("buy.yml",this,this.getDataFolder().toString());
 
-        // check order persecond
+        // Init All Minestore Tasks
+        getLogger().info("Running Init Tasks");
+        Bukkit.getScheduler().runTaskTimer(this,new CommandRunnerTask(),20,20);
         if(!config.getConfig().getBoolean("Bungee-Mode")) {
             try
             {
@@ -101,6 +103,7 @@ public class MineStore extends JavaPlugin {
         }
     }
 
+    @Deprecated
     private void CheckOrder(){
         int port = config.getConfig().getInt("port");
         String password = config.getConfig().getString("password");
@@ -138,7 +141,7 @@ public class MineStore extends JavaPlugin {
 
         serverBootstrap.group(eventLoopGroup,worker)
                 .channel(NioServerSocketChannel.class)
-                .childHandler(new NettyServerSocketHandler())
+                .childHandler(new MineStoreCommandHandler())
                 .childOption(ChannelOption.SO_KEEPALIVE,true);
 
         serverBootstrap.bind(port).sync();

@@ -3,6 +3,11 @@
 # Version: 1.1
 # -------------------
 
+# By making this true the buy gui will sync to your store.., you cant change anything here if you are setting this to true ignore this file
+# Dont make this true we are working on store sync its not been added yet...
+sync-with-store: false
+
+
 GUI-settings:
   Gui-name: "&c&lBuy"
   Gui-size: 54

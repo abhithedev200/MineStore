@@ -2,7 +2,7 @@ package com.abhiram.minestore.commands;
 
 import com.abhiram.minestore.MineStore;
 import com.abhiram.minestore.gui.BuyGui;
-import com.abhiram.minestore.gui.TestGui;
+import com.abhiram.minestore.gui.BuyGuiManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,6 +18,12 @@ public class BuyCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if(commandSender instanceof Player){
             Player p = (Player) commandSender;
+
+            if(plugin.buy.getConfig().getBoolean("sync-with-store"))
+            {
+                p.openInventory(BuyGuiManager.getBuyGuiManager().getGui("CategoryGui"));
+                return true;
+            }
             BuyGui gui = new BuyGui(plugin);
             gui.OpenInventory(p);
             return true;
