@@ -1,10 +1,13 @@
 package com.abhiram.minestore.managers;
 
+import com.abhiram.minestore.MineStore;
 import com.abhiram.minestore.websocket.jsonobjects.Command;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.Callable;
 
 public final class CommandManager {
     private static CommandManager instance;
@@ -19,13 +22,16 @@ public final class CommandManager {
     {
         for(Player player : Bukkit.getOnlinePlayers())
         {
+            Command com = null;
             for(Command command : waiting_commands)
             {
-                if(player.getName().equalsIgnoreCase(command.getUsername()))
-                {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),command.getCommand());
-                    waiting_commands.remove(command);
+                if(player.getName().equalsIgnoreCase(command.getUsername())) {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.getCommand());
+                    com = command;
                 }
+            }
+            if(com != null) {
+                waiting_commands.remove(com);
             }
         }
     }
