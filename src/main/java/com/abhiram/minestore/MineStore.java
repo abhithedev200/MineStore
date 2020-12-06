@@ -15,6 +15,7 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -36,6 +37,9 @@ public class MineStore extends JavaPlugin {
     @Override
     public void onEnable(){
         main = this;
+
+        // Added Bstats
+        new Metrics(this,9575);
 
         // PlaceHolder api check
         PapiCheck();

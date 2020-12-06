@@ -27,6 +27,8 @@
                 <relocation>
                   <pattern>com.google.gson</pattern>
                   <shadedPattern>com.abhiram.minestore.api</shadedPattern>
+                  <pattern>org.bstats</pattern>
+                  <shadedPattern>com.abhiram.minestore.api.bstats</shadedPattern>
                 </relocation>
               </relocations>
             </configuration>
@@ -43,6 +45,10 @@
     <repository>
       <id>placeholderapi</id>
       <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+    </repository>
+    <repository>
+      <id>CodeMC</id>
+      <url>https://repo.codemc.org/repository/maven-public</url>
     </repository>
   </repositories>
   <dependencies>
