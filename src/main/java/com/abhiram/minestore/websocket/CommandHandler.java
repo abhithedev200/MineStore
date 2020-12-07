@@ -11,6 +11,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.Callable;
 
+@Deprecated
 public class CommandHandler implements Runnable{
 
     /**

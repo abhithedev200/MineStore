@@ -9,7 +9,7 @@ public class websocketClient {
         Socket soc = new Socket("localhost",33266);
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("password","hard_password_here");
-        jsonObject.addProperty("command","op Spigot_Abhiram");
+        jsonObject.addProperty("command","say Spigot_Abhiram");
         jsonObject.addProperty("username","Spigot_Abhiram");
 
         System.out.println(jsonObject.toString().getBytes());

@@ -31,8 +31,6 @@ public class MineStore extends JavaPlugin {
     // Buy.yml
     public SpigotConfigManager buy;
 
-    private CommandHandler handler;
-
     // Plugin onEnable Method
     @Override
     public void onEnable(){
@@ -79,17 +77,6 @@ public class MineStore extends JavaPlugin {
     }
 
 
-    @Override
-    public void onDisable(){
-        try {
-            if(!config.getConfig().getBoolean("Bungee-Mode")) {
-                handler.getServerSocket().close();
-            }
-        }catch (Exception e){
-
-        }
-    }
-
     void RegisterCommands(){
         if(config.getConfig().getBoolean("buy-enable")) {
             this.getCommand("buy").setExecutor(new BuyCommand(this));
@@ -114,7 +101,7 @@ public class MineStore extends JavaPlugin {
         String password = config.getConfig().getString("password");
 
         try{
-            handler = new CommandHandler(port,password,this);
+            CommandHandler handler = new CommandHandler(port,password,this);
             Bukkit.getScheduler().runTaskTimerAsynchronously(this,handler, 2,2);
         }catch (Exception e){
             getLogger().info("-------------------------------------");
