@@ -56,7 +56,7 @@ public class BuyGuiManager {
         }
         catch (Exception e)
         {
-            MineStore.getinstance().getLogger().info("Unable to connect to Minestore api.. please check api url in config.yml");
+            MineStore.getinstance().getLogger().info("Unable to connect to Minestore API. Please, check your API URL in config.yml");
         }
 
         return gui;
@@ -83,7 +83,7 @@ public class BuyGuiManager {
         }catch (Exception e)
         {
             e.printStackTrace();
-            MineStore.getinstance().getLogger().info("Unable to connect to minestore api. please check api url in config.yml");
+            MineStore.getinstance().getLogger().info("Unable to connect to MineStore API. Please, check your API URL in config.yml");
         }
 
         gui_map.put("CategoryGui",gui);
