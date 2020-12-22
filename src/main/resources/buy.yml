@@ -1,10 +1,10 @@
-# -------------------
-# Minestore by abhi #
-# Version: 1.1
-# -------------------
+# ---------------------------------
+# Official MineStore plugin by abhi
+# Version: v2.0
+# ---------------------------------
 
-# By making this true the buy gui will sync to your store.., you cant change anything here if you are setting this to true ignore this file
-# Dont make this true we are working on store sync its not been added yet...
+# If you set true, then MineStore will automatically parse and create GUI from your store with using API.
+# You won't be able to edit this GUI, since it's all parsing from your MineStore, but you have to setup config.yml for this.
 sync-with-store: false
 
 
