@@ -1,13 +1,13 @@
 main: com.abhiram.minestore.MineStore
 name: MineStore
-version: 1.1
+version: 2.0
 Author: Abhiram
 depend:
   - PlaceholderAPI
 commands:
   buy:
-    description: a buy gui command
+    description: A buy GUI command
   ms:
-    description: the plugin reload command
+    description: Plugin reload command
     usage: /ms <reload>
     permission: minestore.admin
