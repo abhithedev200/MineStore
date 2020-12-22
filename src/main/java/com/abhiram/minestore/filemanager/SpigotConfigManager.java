@@ -53,10 +53,10 @@ public class SpigotConfigManager {
         try{
             customConfig.save(customFile);
         }catch (Exception e){
-            plugin.getLogger().info("----------------------");
-            plugin.getLogger().info("MineStore v1.0 by abhi");
-            plugin.getLogger().info("Unable to Save Plugin Files.");
-            plugin.getLogger().info("----------------------");
+            plugin.getLogger().info("--------------------------------------");
+            plugin.getLogger().info("MineStore official plugin v2.0 by abhi");
+            plugin.getLogger().info("Plugin not able to save some files :(");
+            plugin.getLogger().info("--------------------------------------");
         }
     }
 }
