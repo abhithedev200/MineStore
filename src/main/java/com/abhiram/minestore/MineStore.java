@@ -67,10 +67,10 @@ public class MineStore extends JavaPlugin {
                 e.printStackTrace();
             }
         }else {
-            getLogger().info("----------------------------------");
-            getLogger().info("Minestore BungeeCord Mode enabled.");
-            getLogger().info("Version: 1.1");
-            getLogger().info("----------------------------------");
+            getLogger().info("--------------------------------------");
+            getLogger().info("MineStore BungeeCord mode was enabled.");
+            getLogger().info("Version: v2.0");
+            getLogger().info("--------------------------------------");
 
             getServer().getMessenger().registerIncomingPluginChannel(this,"my:minestore",new BungeeHandler(this));
         }
@@ -90,7 +90,7 @@ public class MineStore extends JavaPlugin {
 
     void PapiCheck(){
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI").isEnabled()){
-            getLogger().info("Placeholder API has been founded. Adding expansion");
+            getLogger().info("PlaceholdersAPI has been found! Adding expansion...");
             new PlaceHolderApiHook(this).register();
         }
     }
@@ -105,9 +105,9 @@ public class MineStore extends JavaPlugin {
             Bukkit.getScheduler().runTaskTimerAsynchronously(this,handler, 2,2);
         }catch (Exception e){
             getLogger().info("-------------------------------------");
-            getLogger().info("MINESTORE Version: 1.2");
+            getLogger().info("MINESTORE Version: v2.0");
             getLogger().info("ERROR: Unable to listen on port " + port);
-            getLogger().info("Plugin Shuting down");
+            getLogger().info("Plugin shuting down");
             getLogger().info("--------------------------------------");
 
             // Server ShutDown
