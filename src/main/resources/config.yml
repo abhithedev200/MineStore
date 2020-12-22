@@ -1,15 +1,15 @@
 # -----------------------------------------------#
-# MineStore Plugin (DonationBridge) by abhi      #
-# Version: 1.2                                   #
+# Official MineStore Plugin by abhi              #
+# Version: v2.0                                  #
 #------------------------------------------------#
 
-# Websocket Port
+# Websocket port for plugin (port might be opened)
 port: 33266
 # Websocket Passoword
 password: "hard_password_here"
 
 
-# /buy command that enabled GUI (something similar to chest commands)
+# /buy command which enable GUI
 buy-enable: true
 
 
@@ -19,5 +19,5 @@ Url: "https://store.yourdomain.com/"
 # Your API URL for getting the top-donators placeholders - %minestore_username_top_0% and %minestore_amount_top_0% (from 0 to 9)
 Url-api: "https://yourstore.com/api/top_donators"
 
-# BungeeCord Mode if you are using buangee Plugin Enable this.
+# BungeeCord Mode if you are using plugin for BungeeCord then you can enable this for automatically hooks up
 Bungee-Mode: false
