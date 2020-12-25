@@ -36,7 +36,7 @@ public class TopDonoManager {
         try {
             in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         } catch (FileNotFoundException var5) {
-            System.out.println("Unable to get Top Donators");
+            System.out.println("MineStore was unable to get Top Donators");
         }
 
         StringBuilder buffer = new StringBuilder();

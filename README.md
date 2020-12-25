@@ -1,10 +1,10 @@
-# MineStore
-An Donation Bridge Plugin
+# Official MineStore Plugin
 
 
 This plugin is for https://www.mc-market.org/resources/13698/
 
-This plugin supports all minestore types (PRO,LITE,ETC).
+
+Now this plugin doesn't support all types of MineStore. It works only with Minestore V2.2^ and higher. Please, use legacy versions from old branch, if you want to use plugin for older versions or MineStore Lite :)
 
 
 How do I build this project?

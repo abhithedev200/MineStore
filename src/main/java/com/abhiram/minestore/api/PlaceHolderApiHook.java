@@ -44,7 +44,7 @@ public class PlaceHolderApiHook extends PlaceholderExpansion {
 
     @Override
     public String getVersion() {
-        return "V1.1";
+        return "V2.0";
     }
 
 
