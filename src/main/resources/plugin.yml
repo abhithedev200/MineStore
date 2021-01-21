@@ -1,6 +1,6 @@
 main: com.abhiram.minestore.MineStore
 name: MineStore
-version: 2.0
+version: 2.1
 Author: Abhiram
 depend:
   - PlaceholderAPI

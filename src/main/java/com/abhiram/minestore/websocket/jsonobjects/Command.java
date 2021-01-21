@@ -16,6 +16,10 @@ public class Command {
     @Expose
     private String command;
 
+    @SerializedName("is_online_required")
+    @Expose
+    private boolean isonlineneeded;
+
     public String getUsername()
     {
         return username;
@@ -31,5 +35,8 @@ public class Command {
         return command;
     }
 
-
+    public boolean IsPlayerOnlineNeeded()
+    {
+        return isonlineneeded;
+    }
 }
