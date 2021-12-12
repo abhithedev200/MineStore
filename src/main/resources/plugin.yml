@@ -1,0 +1,11 @@
+main: com.abhiram.minestore.MineStore
+name: MineStore
+version: 1.0
+author: abhiram
+
+softdepend:
+  - PlaceholderAPI
+
+commands:
+  ms:
+    description: Minestore plugin main command

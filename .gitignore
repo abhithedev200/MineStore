@@ -1,0 +1,5 @@
+# Project exclude paths
+/target/
+/oldcode/
+/MineStore.iml
+/.idea/

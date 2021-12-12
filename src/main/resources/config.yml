@@ -1,0 +1,22 @@
+# -----------------------------------------------#
+# Official MineStore Plugin by abhi              #
+# Version: v2.5                                  #
+#------------------------------------------------#
+
+# Websocket port for plugin (port might be opened)
+port: 33266
+# Websocket Passoword
+password: "hard_password_here"
+
+
+# /buy command which enable GUI
+buy-enable: true
+
+# URL for /shop command (your shop link)
+Url: "https://store.yourdomain.com/"
+
+# BungeeCord Mode if you are using plugin for BungeeCord then you can enable this for automatically hooks up
+Bungee-Mode: false
+
+# Debug mode - plugin debug mode
+debug-mode: true
